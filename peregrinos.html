@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="stylesheet" type="text/css" href="peregrinos.css">
+    <title> Peregrinos </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin="" ></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    
+    <script src="geojsondocs/credenciais.geojson"></script>
+    
+</head>
+<body>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                        <img src="imagens/caminhosdesantiago.png">
+                </div>
+                <nav>
+                     <ul>
+                        <li><a href="index.html"> CAMINHOS DE SANTIAGO </a></li>
+                        <li><a href="caminhoportuguesdacosta.html"> CAMINHO PORTUGUÊS DA COSTA </a></li>
+                        <li><a href="caminhoportuguescentral.html"> CAMINHO PORTUGUÊS CENTRAL </a></li>
+                        <li><a href="caminhodaorlaatlantica.html"> CAMINHO DA ORLA ATLÂNTICA </a></li>
+                     </ul>   
+                </nav>
+            </div>
+            <h2>Peregrinos </h2>
+                <div class="content-row">
+                     <div class="left-col">
+                          <hr>
+                            
+                           <p> O termo peregrino é a designação para as pessoas que se deslocam a um santuário, 
+                               com devoção. Como existiam inúmeros santuários, os devotos tinham nomes diferentes 
+                               para cada destino. </p>
+                        </div> 
+                        <div class="right-col">
+                            <img src="imagens/peregrino2.jpg">
+                        </div>
+                </div>
+                <br>
+                <h3> Credencial do Peregrino</h3>
+                <div class="credencial">
+                    <div class="left-cre">
+                        <p> A credencial do peregrino é um documento, parecido com um passaporte, que identifica 
+                            o peregrino. Este pode ser obtido em diversas instituições, como, por exemplo, em albergues, 
+                            paróquias, Associações de Amigos do Caminho de Santiago, entre outros. Tem como objetivo identificar 
+                            o peregrino.
+                            <br>
+                            Ao longo do percurso, o caminhante vai recolhendo os carimbos em pontos específicos das entidades 
+                            públicas para comprovar a sua passagem nos locais. Esta deve ser carimbada duas vezes ao dia pelo 
+                            menos nos últimos 100 km (para peregrinos a pé ou a cavalo) ou nos últimos 200 km (para peregrinos 
+                            ciclistas). 
+                            <br>
+                            A credencial, é bastante utilizada para ter acesso aos albergues públicos. Na chegada a Santiago, 
+                            esta deverá ser apresentada na Oficina do Peregrino, para validar o Caminho feito, recebendo assim 
+                            a sua Compostela. A Compostela é um certificado concedido pelo Secretário Capitular que comprova a 
+                            peregrinação.</p>
+                    </div>
+                    <div class="right-cre">
+                        <img src="imagens/credencial.jpeg">
+                    </div>    
+                </div>
+
+        </div>
+        
+        <div id='mapDIV'>i</div>
+
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>    
+
+        <script>
+            // definiçoes do mapa
+            var map = L.map(document.getElementById('mapDIV'), { 
+                center: [36.880,17.578],
+                zoom: 2
+                });
+
+            // Base map
+            var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+
+            var toner= L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png', {});
+
+            var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {});
+
+
+            // coordenadas
+            var coordDIV = document.createElement('div');
+            coordDIV.id = 'mapCoordDIV';
+            coordDIV.style.position = 'absolute';
+            coordDIV.style.bottom = '1px';
+            coordDIV.style.left = '250px';
+            coordDIV.style.zIndex = '900';
+            coordDIV.style.color = '#404040';
+            coordDIV.style.fontFamily = 'Georgia';
+            coordDIV.style.backgroundColor = '#fff';
+
+            document.getElementById('mapDIV').appendChild(coordDIV);
+
+            map.on('mousemove', function(e){
+                var lat = e.latlng.lat.toFixed(3);
+                var lon = e.latlng.lng.toFixed(3);
+                document.getElementById('mapCoordDIV').innerHTML = 'Coordenadas:' + lat + ' , ' + lon;
+                });
+
+            //credenciais
+             var credenciais = L.geoJSON(credenciais, {
+                pointToLayer: function(feature, latlng) {
+                var credenciais_icon = new L.Icon ({
+                    iconUrl:'icons/credencial.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:credenciais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.Name;
+                    let mod = feature.properties.PopupInfo;
+                    layer.bindPopup ('<h5> Credencial </h5> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+
+            // legenda 
+            var legend = L.control({ position:"bottomleft"});
+                legend.onAdd = function(map) {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/credencial.png);background-repeat: no-repeat;"></i><span> Credenciais</span><br>';
+                
+    
+                return div;
+                };
+                legend.addTo(map);
+
+            // adicionar as camadas ao mapa
+            var baselayers = {
+                'OpenStreetMap': osm,
+                'Stamen-Toner': toner, 
+                'OpenTopoMap': topo
+            };
+            var overlays = {
+                'Credenciais': credenciais,
+            };
+            L.control.layers(baselayers,overlays).addTo(map); 
+            
+            L.Control.geocoder().addTo(map);
+
+            // adicionar escala 
+            var scale = L.control.scale()
+            scale.addTo(map)
+
+            // adicionar fontes 
+            map.attributionControl.addAttribution('OpenStreetMap');
+            map.attributionControl.addAttribution('Stamen-Toner');
+            map.attributionControl.addAttribution('OpenTopoMap');
+        
+        </script>
+        <br>
+        <h3> Chegada a Santiago de Compostela </h3>
+        <p class="para"> Quando os peregrinos chegam a Santiago de Compostela fazem em inúmeras 
+            atividades, como participar nos rituais tradicionais da peregrinação, 
+            abraçar a estátua do apóstolo na catedral, visitar a Arca Marmórea onde 
+            o apóstolo está sepultado, assistir à missa do peregrino e por fim, 
+            presenciar ao lançamento do bota-fumeiro. Também na 
+            chegada ao destino os peregrinos podem obter a Compostela como prova 
+            de que a peregrinação foi realizada.  </p>
+
+        <h3 class="compostela"> Compostela (documento): </h3>
+        <div class="compos">
+            <div class="left-para">
+                <p>A Compostela é um documento que o peregrino recebe em Santiago de 
+            Compostela, concedido pelo Arcebispado de Compostela que comprova a peregrinação, 
+            mais concretamente, que percorreu pelo menos 100 km a pé ou a cavalo, ou 200 km a 
+            bicicleta. Esta é emitida na Oficina do Peregrino, quando o peregrino apresenta a 
+            sua credencial carimbada, pois comprova a distância total percorrida. A Compostela 
+            está relacionada com a religião, sendo escrita em latim e incluindo o nome do peregrino 
+            no documento.</p>
+            </div>
+            <div class="right-para">
+                <img src="imagens/compostela.jfif">
+            </div> 
+        </div>  
+
+        <h3 class="certificado"> Certificado de distância: </h3>
+        <div class="certi">
+            <div class="left-certi">
+                <p>Outro documento fornecido aos peregrinos de Compostela é o certificado de distância. 
+                    Este documento também é obtido na Oficina do Peregrino e diferencia-se da Compostela 
+                    pela informação detalhada do caminho do Peregrino. E é exigido nas mesmas condições.</p>
+                    
+                    <p>O certificado de distância contém as seguintes informações:<br>
+                        Nome do peregrino; <br>
+                        Ponto de partida e data de início;<br>
+                        Quilómetros percorridos; <br>
+                        Dia da chegada a Santiago de Compostela;<br>
+                        Caminho percorrido. <br>
+                    </p>
+                    <br>
+              
+            </div>
+            <div class="right-certi">
+                <img src="imagens/certificado.jpg">
+            </div> 
+        </div>   
+
+       <!--Footer-->
+    <STYLE>A {text-decoration: none;} </STYLE>
+    <section id="footer">
+        <div class="container footer-row">
+            <hr>
+            <div class="footer-left-col">
+            <br>
+                <div class="footer-links">
+                    <div class="link-title">
+                        <a href="index.html"><h5> CAMINHOS DE SANTIAGO </h5></a><br>
+                        <a href="caminhos_santiago_europa.html"><small> Os Caminhos de Santiago na Europa </small></a><br>
+                        <a href="sinalizacao.html"><small> Simbologia e Sinalização</small></a><br>
+                        <a href="peregrinos.html"><small> Peregrinos</small></a>
+                    </div>
+                    <div class="link-title">
+                        <a href="caminhoportuguesdacosta.html"><h5>CAMINHO PORTUGUÊS DA COSTA </h5></a><br>
+                        <a href="caminhoportuguesdacosta.html"><small>Caminho Completo</small></a><br>
+                        <a href="caminho_costa_porto.html"><small>Porto</small></a><br>
+                        <a href="caminho_costa_matosinhos.html"><small>Matosinhos</small></a><br>
+                        <a href="caminho_costa_maia.html"><small>Maia</small></a><br>
+                        <a href="caminho_costa_vila_conde.html"><small>Vila do Conde</small></a><br>
+                        <a href="caminho_costa_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                        <a href="caminho_costa_esposende.html"><small>Esposende</small></a><br>
+                        <a href="caminho_costa_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                        <a href="caminho_costa_caminha.html"><small>Caminha</small></a><br>
+                        <a href="caminho_costa_vila_nova_cerveira.html"><small>Vila Nova de Cerveira</small></a><br>
+                        <a href="caminho_costa_valenca.html"><small>Valença</small></a>
+                    </div>
+                    <div class="link-title">
+                        <a href="caminhoportuguescentral.html"><h5>CAMINHO PORTUGUÊS CENTRAL</h5></a><br>
+                        <a href="caminhoportuguescentral.html"><small>Caminho Completo</small></a><br>
+                        <a href="caminho_central_porto.html"><small>Porto</small></a><br>
+                        <a href="caminho_central_matosinhos.html"><small>Matosinhos</small></a><br>
+                        <a href="caminho_central_maia.html"><small>Maia</small></a><br>
+                        <a href="caminho_central_vila_conde.html"><small>Vila do Conde</small></a><br>
+                        <a href="caminho_central_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                        <a href="caminho_central_barcelos.html"><small>Barcelos</small></a><br>
+                        <a href="caminho_central_ponte_lima.html"><small>Ponte de Lima</small></a><br>
+                        <a href="caminho_central_paredes_coura.html"><small>Paredes de Coura</small></a><br>
+                        <a href="caminho_central_valenca.html"><small>Valença</small></a> 
+                    </div>
+                    <div class="link-title">
+                        <a href="caminhodaorlaatlantica.html"><h5>CAMINHO DA ORLA ATLÂNTICA</h5></a></li><br>
+                        <a href="caminhodaorlaatlantica.html"><small>Caminho Completo</small></a><br>
+                        <a href="caminho_atlantica_porto.html"><small>Porto</small></a><br>
+                        <a href="caminho_atlantica_matosinhos.html"><small>Matosinhos</small></a><br>
+                        <a href="caminho_atlantica_vila_conde.html"><small>Vila do Conde</small></a><br>
+                        <a href="caminho_atlantica_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                        <a href="caminho_atlantica_esposende.html"><small>Esposende</small></a><br>
+                        <a href="caminho_atlantica_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                        <a href="caminho_atlantica_caminha.html"><small>Caminha</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    
+</body>
+</html>
+
+

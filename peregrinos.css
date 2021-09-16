@@ -1,0 +1,338 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+.container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background: white;
+}
+.navbar {
+    width: 90%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+.logo img {
+    width: 80px;
+    cursor: pointer;
+    margin: 35px 0;
+}
+
+/*menu principal-horizontal*/
+nav ul li {
+    list-style: none;
+    display: inline;
+    margin-right: 5px;
+    position:relative;
+}
+nav ul li a{
+    text-decoration: none;
+    color:darkblue;
+    font-size: 13px;
+    padding: 5px 2px;
+}
+nav ul li a:hover{
+    color: rgb(255,218, 6);
+    border-bottom: 3px solid rgb(255, 218, 6);
+}
+.content-row{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.left-col, .right-col{
+    flex-basis: 50%;    
+}
+.left-col {
+    padding: 50px 0;
+}
+.right-col img {
+    width: 80%;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.credencial{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.left-cre, .right-cre{
+    flex-basis: 50%;    
+}
+.left-cre {
+    padding: 50px 0;
+}
+.right-cre img {
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+
+h2 {
+    font-size: 40px;
+    color: darkblue;
+    letter-spacing: 2px;
+    margin-left: 50px;
+    margin-top: 40px;
+    margin-right: 50px;
+}
+h3 {
+    font-size: 20px;
+    color: darkblue;
+    letter-spacing: 1px;
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 50px;
+    text-align: center;
+}
+h4 {
+    font-size: 20px;
+    color: darkblue;
+    letter-spacing: 1px;
+    margin-left: 50px;
+    margin-top: 60px;
+    margin-right: 50px;
+    text-align: left;
+}
+
+h1 {
+    font-size: 30px;
+    color: darkblue;
+    letter-spacing: 2px;
+    margin-left: 70px;
+    margin-top: 10px;
+    margin-right: 50px;
+}
+hr {
+    width: 160px;
+    height: 4px;
+    background: darkblue;
+    margin: 20px 0;
+    border: none;
+    margin-right: 50px;
+}
+.square {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    background: darkblue;
+    margin: 15px 0;
+}
+.common-btn {
+    padding: 18px 40px;
+    background: white;
+    outline: none;
+    border: 2px solid darkblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+p{
+    color:black;
+    margin: 30px 0;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: justify;
+    margin-left: 10px;
+}
+.texto {
+    color:black;
+    background-color: white;
+    font-size: 14px;
+    line-height: 20px;
+    border:lightblue solid 5px;
+    margin-top: 20px;
+    padding: 20px;
+    
+}
+.line-1{
+    width: 15px;
+    height: 15px;
+    background: darkblue;
+    display: inline-block;
+}
+.line-2{
+    width: 80px;
+    height: 1px;
+    background: darkblue;
+    display: inline-block;
+}
+.line-3{
+    width: 60px;
+    height: 1px;
+    background: darkblue;
+    display: inline-block;
+}
+.line{
+    line-height: 8px;
+}
+.right-col img {
+    width: 60%;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+#mapDIV{
+    height: 500px;
+    width: 1100px;
+    border: solid 1px black;
+    margin-top: 700px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+  
+
+.para {
+    color:black;
+    margin: 30px 0;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: justify;
+    margin-left: 60px;
+    margin-right: 130px; 
+}
+.compostela, .certificado {
+    color:rgb(231, 210, 23);
+    margin: 30px 0;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: justify;
+    margin-left: 60px;
+    margin-right: 130px; 
+}
+
+.compos{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.left-para{
+    flex-basis: 60%;    
+}
+.right-para {
+    flex-basis:40% ;
+}
+.left-para {
+    padding: 50px 0;
+}
+.right-para img {
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.certi{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.left-certi{
+    flex-basis: 60%;    
+}
+.right-certi {
+    flex-basis: 40%;
+}
+.left-certi {
+    padding: 50px 0;
+}
+.right-certi img {
+    width: 60%;
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 40px;
+}
+/*legenda especifica*/
+.legend {
+    padding: 6px 8px;
+    font: 14px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255,255, 0.8);
+    line-height: 24px;
+    color: #555;
+  }
+  .legend h4 {
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 12px 8px;
+    color: #777;
+  }
+  .legend span {
+    position: relative;
+    bottom: 3px;
+  }
+  .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin:  0 8px 0 0;
+    opacity: 0.7;
+  }
+  .legend i.icon{
+    background-size: 18px;
+    background-color: rgba(255,255,255,1);
+  }
+  
+
+
+/*----footer---*/ 
+#footer {
+    padding: 10px 0 5px;
+    text-decoration: none;
+    }
+    hr {
+    width: 90%;
+    border:0;
+    margin-left: 40px;
+    margin-right: 20px;
+    }
+    .footer-left-col{
+    flex-basis: 90%;
+    text-decoration: none;
+    }
+    .footer-links{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-decoration: none;
+    }
+    .link-title h5{
+    color:rgb(255,218, 6);
+    text-decoration: none;
+    font-size: 13px;
+    border-bottom: 3px solid rgb(255, 218, 6);
+    }
+    .link-title small {
+    font-size: 11px;
+    color: black;
+    text-decoration: none;
+    }
+    .footer-info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-decoration: none;
+    }
+  
+    
+  
+  
+
+
+
+
+
+
