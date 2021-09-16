@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <link rel="stylesheet" type="text/css" href="caminho_costa_maia.css">
+        <title> Caminho Português da Costa - Maia</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin="" ></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <script src="geojsondocs/maia/percurso_costa_maia.geojson"></script>
+        <script src="geojsondocs/maia/percurso_costa_maia_buffer1km.geojson"></script>
+        <script src="geojsondocs/maia/maia.geojson"></script>
+        <script src="geojsondocs/maia/maia_territorios_artificializados.geojson"></script>
+        <script src="geojsondocs/maia/maia_agricultura.geojson"></script>
+        <script src="geojsondocs/maia/maia_pastagens.geojson"></script>
+        <script src="geojsondocs/maia/maia_florestas.geojson"></script>
+        <script src="geojsondocs/maia/maia_matos.geojson"></script>
+        <script src="geojsondocs/maia/estab_al_costa_maia.geojson"></script>
+
+        <script src="geojsondocs/maia/pt_costa_maia_restauracao.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_multibanco.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_farmacias.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_cafes.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_museus.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_monumentos_historicos.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_estabelecimentos_comerciais.geojson"></script>
+        <script src="geojsondocs/maia/pt_costa_maia_aeroporto.geojson"></script>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                        <img src="imagens/caminhosdesantiago.png">
+                </div>
+                <nav class="menu">
+                     <ul>
+                        <li><a href="index.html"> CAMINHOS DE SANTIAGO </a></li>
+                        <li><a href="caminhoportuguesdacosta.html"> CAMINHO PORTUGUÊS DA COSTA </a></li>
+                        <li><a href="caminhoportuguescentral.html"> CAMINHO PORTUGUÊS CENTRAL </a></li>
+                        <li><a href="caminhodaorlaatlantica.html"> CAMINHO DA ORLA ATLÂNTICA  </a></li>
+                     </ul>   
+                </nav>
+            </div>
+            <h2> CAMINHO PORTUGUÊS DA COSTA </h2>
+            <div class="content-row">
+                <div class="left-col">
+                <hr>
+                <h1> MAIA </h1>
+                <p> O Caminho Português da Costa no concelho da Maia tem uma distância total de 4,9 km, tem uma duração de, 
+                    aproximadamente, 1h30 min, uma dificuldade classificada como 
+                    fácil e o tipo de percurso é rural/urbano. </p>     
+                </div> 
+                <div class="right-col">
+                    <img src="imagens/costa_maia.png">
+                </div> 
+            </div>
+               
+   </div>
+   <nav class="menu3">
+    <ul>
+       <li><a href="caminhoportuguesdacosta.html"> Caminho completo </a></li>
+       <li><a href="caminho_costa_porto.html"> Porto </a></li>
+       <li><a href="caminho_costa_matosinhos.html"> Matosinhos </a></li>
+       <li><a href="caminho_costa_maia.html"> Maia </a></li>
+       <li><a href="caminho_costa_vila_conde.html"> Vila do Conde  </a></li>
+       <li><a href="caminho_costa_povoa_varzim.html"> Póvoa de Varzim  </a></li>
+       <li><a href="caminho_costa_esposende.html"> Esposende  </a></li>
+       <li><a href="caminho_costa_viana_castelo.html"> Viana do Castelo  </a></li>
+       <li><a href="caminho_costa_caminha.html"> Caminha  </a></li>
+       <li><a href="caminho_costa_vila_nova_cerveira.html"> Vila Nova de Cerveira  </a></li>
+       <li><a href="caminho_costa_valenca.html"> Valença </a></li>
+    </ul>   
+    </nav>
+
+        <div id='mapDIV'>i</div>
+
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>  
+
+        <script>
+            // definiçoes do mapa
+            var map = L.map(document.getElementById('mapDIV'), { 
+                center: [41.20322,-8.64594],
+                zoom: 12
+                });
+
+            // Base map
+            var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+
+            var toner= L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png', {});
+
+            var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {});
+
+            // coordenadas
+            var coordDIV = document.createElement('div');
+            coordDIV.id = 'mapCoordDIV';
+            coordDIV.style.position = 'absolute';
+            coordDIV.style.bottom = '1px';
+            coordDIV.style.left = '310px';
+            coordDIV.style.zIndex = '900';
+            coordDIV.style.color = '#404040';
+            coordDIV.style.fontFamily = 'Georgia';
+            coordDIV.style.backgroundColor = '#fff';
+
+            document.getElementById('mapDIV').appendChild(coordDIV);
+
+            map.on('mousemove', function(e){
+                var lat = e.latlng.lat.toFixed(3);
+                var lon = e.latlng.lng.toFixed(3);
+                document.getElementById('mapCoordDIV').innerHTML = 'Coordenadas:' + lat + ' , ' + lon;
+                });
+
+            // criação das camadas de sobreposição
+            // poligono maia
+            var concelho3 = L.geoJSON(Concelho_maia,{
+                        color: '#000',
+                        weight: 0.5
+            });
+            concelho3.bindTooltip('Concelho da Maia')
+            concelho3.addTo(map);
+
+            // buffer 1km
+            var buffer = L.geoJSON(percurso_costa_maia_buffer1km, {
+                    color: '#FDFD96',
+                    weight: 3,
+                    dashArray: '12 8 12'
+            });
+            buffer.bindTooltip('Área envolvente - 1km')
+            buffer.addTo(map);
+            
+            // percurso completo
+            var percurso = L.geoJSON(percurso_costa_maia, {
+                color: '#0000ff',
+                weight: 4,
+                dashArray: '12 8 12'
+            });
+            percurso.bindTooltip('Caminho Português da Costa na Maia')
+            percurso.addTo(map);
+
+            //COS 2018 - Maia
+            //territorios artificializados 
+            var territorios_arti3 = L.geoJSON(maia_territorios_artificializados, {
+                    color: '#000000',
+                    backgrounds: '#000000',
+                    weight: 0.5,
+            });
+            territorios_arti3.bindTooltip('Territórios artificializados')
+            territorios_arti3.addTo(map);
+
+            //agricultura 
+            var agricultura3 = L.geoJSON(maia_agricultura, {
+                    color: '#8B4513',
+                    backgrounds: '#8B4513',
+                    weight: 0.5,
+            });
+            agricultura3.bindTooltip('Agricultura')
+            agricultura3.addTo(map);
+
+            //pastagens
+            var pastagens3 =L.geoJSON(maia_pastagens, {
+                    color: '#006400',
+                    backgrounds: '#006400',
+                    weight:0.5,
+            });
+            pastagens3.bindTooltip('Florestas')
+            pastagens3.addTo(map);        
+
+            //florestas
+            var florestas3 = L.geoJSON(maia_florestas, {
+                    color: '#006400',
+                    backgrounds: '#006400',
+                    weight: 0.5,
+            });
+            florestas3.bindTooltip('Florestas')
+            florestas3.addTo(map);
+
+            //Matos
+            var matos3 = L.geoJSON(maia_matos, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            matos3.bindTooltip('Matos')
+            matos3.addTo(map);
+
+            var cos_maia = L.layerGroup ([territorios_arti3,agricultura3,pastagens3,florestas3,matos3])
+            .addTo(map);
+
+            //pontos de interesse
+            //serviços
+            //restauracao
+            var restauracao = L.geoJSON(pt_costa_maia_restauracao, {
+                pointToLayer: function(feature, latlng) {
+                var restauracao_icon = new L.Icon ({
+                    iconUrl:'icons/restaurantes.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:restauracao_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Restauração </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //multibanco
+            var multibanco = L.geoJSON(pt_costa_maia_multibanco, {
+                pointToLayer: function(feature, latlng) {
+                var multibanco_icon = new L.Icon ({
+                    iconUrl:'icons/multibanco.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:multibanco_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Multibanco </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //farmacias
+            var farmacias = L.geoJSON(pt_costa_maia_farmacias, {
+                pointToLayer: function(feature, latlng) {
+                var farmacias_icon = new L.Icon ({
+                    iconUrl:'icons/farmacia.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:farmacias_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Farmácias </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //cafes
+            var cafes = L.geoJSON(pt_costa_maia_cafes, {
+                pointToLayer: function(feature, latlng) {
+                var cafes_icon = new L.Icon ({
+                    iconUrl:'icons/cafe.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:cafes_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Cafés </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+             //estabelecimentos comerciais
+             var estabelecimentos_comerciais = L.geoJSON(pt_costa_maia_estabelecimentos_comerciais, {
+                pointToLayer: function(feature, latlng) {
+                var estabelecimentos_comerciais_icon = new L.Icon ({
+                    iconUrl:'icons/estabelecimentos_comerciais.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:estabelecimentos_comerciais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Estabelecimentos Comerciais </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //museus
+            var museus = L.geoJSON(pt_costa_maia_museus, {
+                pointToLayer: function(feature, latlng) {
+                var museus_icon = new L.Icon ({
+                    iconUrl:'icons/museu.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:museus_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Museus </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //patrimonio
+            //monumentos historicos
+            var monumentos_historicos = L.geoJSON(pt_costa_maia_monumentos_historicos, {
+                pointToLayer: function(feature, latlng) {
+                var monumentos_historicos_icon = new L.Icon ({
+                    iconUrl:'icons/monumentos_historicos.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:monumentos_historicos_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Património - Monumentos Históricos </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //aeroporto
+            var aeroporto = L.geoJSON(pt_costa_maia_aeroporto, {
+                pointToLayer: function(feature, latlng) {
+                var aeroporto_icon = new L.Icon ({
+                    iconUrl:'icons/aeroporto.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:aeroporto_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Património - Aeroporto </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            // alojamento
+            var alojamento = L.geoJSON(estab_al_costa_maia, {
+                pointToLayer: function(feature, latlng) {
+                var alojamento_icon = new L.Icon ({
+                    iconUrl:'icons/alojamento_icon.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:alojamento_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.Denominaca;
+                    let mod = feature.properties.Modalidade;
+                    let ute = feature.properties.NrUtentes;
+                    let end = feature.properties.Endereco;
+                    let fre = feature.properties.LOCALIDADE;
+                    let psot = feature.properties.CodigoPost;
+                    let type = feature.geometry.type;
+                    let email = feature.properties.Email;
+                    let coord = feature.geometry.coordinates
+                    layer.bindPopup ('<h4> Serviços - Alojamento Local </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Modalidade: </strong>' + mod + '</p><p> <strong> Capacidade: </strong>' + ute + '</p><p> <strong> Endereço: </strong>' + end + '</p><p> <strong> Freguesia: </strong>' + fre + '</p><p> <strong> Código-Postal: </strong>' + psot + '</p><p> <strong> E-mail: </strong>' + email + '</p><p> <strong> Coordenadas: </strong>' + coord + '</p>') 
+                }}).addTo(map);
+
+            // legenda 
+            var legend = L.control({ position:"bottomleft"});
+                legend.onAdd = function(map) {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML += '<i style= "background:#000"></i> <span> Concelho da Maia </span> <br>';
+                div.innerHTML += '<i style= "background:#0000ff"></i> <span> Caminho Português da Costa </span> <br>';
+                div.innerHTML += '<i style= "background:#fdfd96"></i> <span> Área envolvente ao percurso (1km) </span> <br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/alojamento_icon.png);background-repeat: no-repeat;"></i><span> Serviços - Alojamento Local</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/multibanco.png);background-repeat: no-repeat;"></i><span> Serviços - Multibanco</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/restaurantes.png);background-repeat: no-repeat;"></i><span> Serviços - Restauração</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/farmacia.png);background-repeat: no-repeat;"></i><span>  Serviços - Farmácias </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/cafe.png);background-repeat: no-repeat;"></i><span>  Serviços - Cafés </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/estabelecimentos_comerciais.png);background-repeat: no-repeat;"></i><span>  Serviços - Estabelecimentos Comerciais </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/museu.png);background-repeat: no-repeat;"></i><span>  Serviços - Museus </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/aeroporto.png);background-repeat: no-repeat;"></i><span> Património - Aeroporto </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/monumentos_historicos.png);background-repeat: no-repeat;"></i><span> Património - Monumentos Históricos </span><br>';
+                div.innerHTML += "<h4> Ocupação do Solo (COS - 2018) </4>";
+                div.innerHTML += '<i style= "background:#000000"></i> <span> Territórios Artificializados  </span> <br>';
+                div.innerHTML += '<i style= "background:#8B4513"></i> <span> Agricultura </span> <br>';
+                div.innerHTML += '<i style= "background:#DCDCDC"></i> <span> Espaços Descobertos </span> <br>';
+                div.innerHTML += '<i style= "background:#006400"></i> <span> Florestas </span> <br>';
+                div.innerHTML += '<i style= "background:#87CEeb"></i> <span> Massas de água </span> <br>';
+                div.innerHTML += '<i style= "background:#964B00"></i> <span> Matos </span> <br>';
+
+                return div;
+                };
+                legend.addTo(map);
+
+            // adicionar as camadas ao mapa
+            var baselayers = {
+                'OpenStreetMap': osm,
+                'Stamen-Toner': toner, 
+                'OpenTopoMap': topo
+            };
+            var overlays = {
+                'Concelho da Maia': concelho3,
+                'Caminho Português da Costa na Maia': percurso,
+                'Área envolvente ao percurso (1km)': buffer,
+                'Serviços - Alojamento Local':alojamento,
+                'Serviços - Multibanco':multibanco,
+                'Serviços - Restauração':restauracao,
+                'Serviços - Farmácias':farmacias,
+                'Serviços - Cafés':cafes,
+                'Serviços - Estabelecimentos Comerciais':estabelecimentos_comerciais,
+                'Serviços - Museus':museus,
+                'Património - Monumentos Históricos': monumentos_historicos,
+                'Património - Aeroporto':aeroporto,
+                'COS de Maia': cos_maia,
+                
+            };
+            L.control.layers(baselayers,overlays).addTo(map);
+
+            L.Control.geocoder().addTo(map);
+
+            // adicionar escala 
+            var scale = L.control.scale()
+            scale.addTo(map)
+
+            // adicionar fontes 
+            map.attributionControl.addAttribution('OpenStreetMap');
+            map.attributionControl.addAttribution('Stamen-Toner');
+            map.attributionControl.addAttribution('OpenTopoMap');
+        </script>
+
+        <!--galeria de pontos de interesse-->
+        
+        <h3> PATRIMÓNIO </h3>
+            <br>
+            <br>
+            <div class="wrap">
+                <section class="container gallery-container">
+        
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">01 / 03</div>
+                        <img class="imgslide" src="imagens/capela_mae_homens.jpg" />
+                        <div class="text"> Capela de Nossa Senhora Mãe dos Homens </div>
+                    </div>
+        
+                    <div class="mySlides fade">
+                        <div class="numbertext">02 / 03</div>
+                        <img class="imgslide" src="imagens/igreja_paroquial_santa_maria.jpg" />
+                        <div class="text"> Igreja Paroquial de Santa Maria</div>
+                    </div>
+        
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">03 / 03</div>
+                        <img class="imgslide" src="imagens/cruzeiro_velho.jpg" />
+                        <div class="text"> Cruzeiro Velho </div>
+                    </div>
+        
+                    
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </section>
+            </div>
+        
+            <script src="comportamento.json"></script>
+
+            <!--Footer-->
+            <STYLE>A {text-decoration: none;} </STYLE>
+            <section id="footer">
+                <div class="container footer-row">
+                    <hr>
+                    <div class="footer-left-col">
+                    <br>
+                        <div class="footer-links">
+                            <div class="link-title">
+                                <a href="index.html"><h5> CAMINHOS DE SANTIAGO </h5></a><br>
+                                <a href="caminhos_santiago_europa.html"><small> Os Caminhos de Santiago na Europa </small></a><br>
+                                <a href="sinalizacao.html"><small> Simbologia e Sinalização</small></a><br>
+                                <a href="peregrinos.html"><small> Peregrinos</small></a>
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhoportuguesdacosta.html"><h5>CAMINHO PORTUGUÊS DA COSTA </h5></a><br>
+                                <a href="caminhoportuguesdacosta.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_costa_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_costa_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_costa_maia.html"><small>Maia</small></a><br>
+                                <a href="caminho_costa_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_costa_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_costa_esposende.html"><small>Esposende</small></a><br>
+                                <a href="caminho_costa_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                                <a href="caminho_costa_caminha.html"><small>Caminha</small></a><br>
+                                <a href="caminho_costa_vila_nova_cerveira.html"><small>Vila Nova de Cerveira</small></a><br>
+                                <a href="caminho_costa_valenca.html"><small>Valença</small></a>
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhoportuguescentral.html"><h5>CAMINHO PORTUGUÊS CENTRAL</h5></a><br>
+                                <a href="caminhoportuguescentral.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_central_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_central_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_central_maia.html"><small>Maia</small></a><br>
+                                <a href="caminho_central_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_central_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_central_barcelos.html"><small>Barcelos</small></a><br>
+                                <a href="caminho_central_ponte_lima.html"><small>Ponte de Lima</small></a><br>
+                                <a href="caminho_central_paredes_coura.html"><small>Paredes de Coura</small></a><br>
+                                <a href="caminho_central_valenca.html"><small>Valença</small></a> 
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhodaorlaatlantica.html"><h5>CAMINHO DA ORLA ATLÂNTICA</h5></a></li><br>
+                                <a href="caminhodaorlaatlantica.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_atlantica_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_atlantica_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_atlantica_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_atlantica_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_atlantica_esposende.html"><small>Esposende</small></a><br>
+                                <a href="caminho_atlantica_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                                <a href="caminho_atlantica_caminha.html"><small>Caminha</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </body>
+</html>

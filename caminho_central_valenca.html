@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <link rel="stylesheet" type="text/css" href="caminho_central_valenca.css">
+        <title> Caminho Português Central - Valença </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin="" ></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <script src="geojsondocs/valenca/caminho_central_valenca.geojson"></script>
+        <script src="geojsondocs/valenca/caminho_central_valenca_buffer1km.geojson"></script>
+        <script src="geojsondocs/valenca/valenca.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_territorios_artificializados.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_agricultura.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_pastagens.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_florestas.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_matos.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_espacos_descobertos.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_zonas_humidas.geojson"></script>
+        <script src="geojsondocs/valenca/valenca_massas_agua.geojson"></script>
+        <script src="geojsondocs/valenca/estab_al_central_valenca.geojson"></script>
+
+        <script src="geojsondocs/valenca/pt_central_valenca_multibanco.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_restauracao.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_farmacias.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_forcas_seguranca.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_hospitais.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_cafes.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_atracoes_turisticas.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_monumentos_historicos.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_estabelecimentos_comerciais.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_area_repouso.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_camara_junta.geojson"></script>
+        <script src="geojsondocs/valenca/pt_central_valenca_posto_turismo.geojson"></script>
+        
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                        <img src="imagens/caminhosdesantiago.png">
+                </div>
+                <nav class="menu">
+                     <ul>
+                        <li><a href="index.html"> CAMINHOS DE SANTIAGO </a></li>
+                        <li><a href="caminhoportuguesdacosta.html"> CAMINHO PORTUGUÊS DA COSTA </a></li>
+                        <li><a href="caminhoportuguescentral.html"> CAMINHO PORTUGUÊS CENTRAL </a></li>
+                        <li><a href="caminhodaorlaatlantica.html"> CAMINHO DA ORLA ATLÂNTICA  </a></li>
+                     </ul>   
+                </nav>
+            </div>
+            <h2> CAMINHO PORTUGUÊS CENTRAL </h2>
+            <div class="content-row">
+                <div class="left-col">
+                <hr>
+                <h1> VALENÇA </h1>
+                
+                </div>  
+            </div>
+   <nav class="menu3">
+    <ul>
+       <li><a href="caminhoportuguescentral.html"> Caminho completo </a></li>
+       <li><a href="caminho_central_porto.html"> Porto </a></li>
+       <li><a href="caminho_central_matosinhos.html"> Matosinhos </a></li>
+       <li><a href="caminho_central_maia.html"> Maia </a></li>
+       <li><a href="caminho_central_vila_conde.html"> Vila do Conde  </a></li>
+       <li><a href="caminho_central_povoa_varzim.html"> Póvoa de Varzim  </a></li>
+       <li><a href="caminho_central_barcelos.html"> Barcelos  </a></li>
+       <li><a href="caminho_centra_ponte_lima.html"> Ponte de Lima  </a></li>
+       <li><a href="caminho_central_paredes_coura.html"> Paredes de Coura  </a></li>
+       <li><a href="caminho_central_valenca.html"> Valença </a></li>
+    </ul>   
+    </nav>
+
+        <div id='mapDIV'>i</div>
+
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>    
+
+        <script>
+            // definiçoes do mapa
+            var map = L.map(document.getElementById('mapDIV'), { 
+                center: [42.009,-8.637],
+                zoom: 12
+                });
+
+            // Base map
+            var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+
+            var toner= L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png', {});
+
+            var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {});
+
+            // coordenadas
+            var coordDIV = document.createElement('div');
+            coordDIV.id = 'mapCoordDIV';
+            coordDIV.style.position = 'absolute';
+            coordDIV.style.bottom = '1px';
+            coordDIV.style.left = '310px';
+            coordDIV.style.zIndex = '900';
+            coordDIV.style.color = '#404040';
+            coordDIV.style.fontFamily = 'Georgia';
+            coordDIV.style.backgroundColor = '#fff';
+
+            document.getElementById('mapDIV').appendChild(coordDIV);
+
+            map.on('mousemove', function(e){
+                var lat = e.latlng.lat.toFixed(3);
+                var lon = e.latlng.lng.toFixed(3);
+                document.getElementById('mapCoordDIV').innerHTML = 'Coordenadas:' + lat + ' , ' + lon;
+                });
+
+            // criação das camadas de sobreposição
+            // poligono valenca
+            var concelho10 = L.geoJSON(Concelho_valenca,{
+                        color: '#000',
+                        weight: 0.5
+            });
+            concelho10.bindTooltip('Concelho de Valença')
+            concelho10.addTo(map);
+
+            // buffer 1km
+            var buffer = L.geoJSON(caminho_central_valenca_buffer1km, {
+                    color: '#FDFD96',
+                    weight: 3,
+                    dashArray: '12 8 12'
+            });
+            buffer.bindTooltip('Área envolvente - 1km')
+            buffer.addTo(map);
+            
+            // percurso completo
+            var percurso = L.geoJSON(caminho_central_valenca, {
+                color: '#0000ff',
+                weight: 4,
+                dashArray: '12 8 12'
+            });
+            percurso.bindTooltip('Caminho Português Central em Valença')
+            percurso.addTo(map);
+
+            //COS 2018 - Valença
+            //territorios artificializados 
+            var territorios_arti10 = L.geoJSON(valenca_territorios_artificializados, {
+                    color: '#000000',
+                    backgrounds: '#000000',
+                    weight: 0.5,
+            });
+            territorios_arti10.bindTooltip('Territórios artificializados')
+            territorios_arti10.addTo(map);
+
+            //agricultura 
+            var agricultura10 = L.geoJSON(valenca_agricultura, {
+                    color: '#8B4513',
+                    backgrounds: '#8B4513',
+                    weight: 0.5,
+            });
+            agricultura10.bindTooltip('Agricultura')
+            agricultura10.addTo(map);
+
+            //pastagens
+            var pastagens10 =L.geoJSON(valenca_pastagens, {
+                    color: '#006400',
+                    backgrounds: '#006400',
+                    weight:0.5,
+            });
+            pastagens10.bindTooltip('Pastagens')
+            pastagens10.addTo(map);        
+
+            //florestas
+            var florestas10 = L.geoJSON(valenca_florestas, {
+                    color: '#006400',
+                    backgrounds: '#006400',
+                    weight: 0.5,
+            });
+            florestas10.bindTooltip('Florestas')
+            florestas10.addTo(map);
+
+            //Matos
+            var matos10 = L.geoJSON(valenca_matos, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            matos10.bindTooltip('Matos')
+            matos10.addTo(map);
+
+            //espaços descobertos
+            var espacos_descobertos10 = L.geoJSON(valenca_espacos_descobertos, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            espacos_descobertos10.bindTooltip('Espaços descobertos')
+            espacos_descobertos10.addTo(map);
+
+            //zonas humidas
+            var zonas_humidas10 = L.geoJSON(valenca_zonas_humidas, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            zonas_humidas10.bindTooltip('Zonas humidas')
+            zonas_humidas10.addTo(map);
+
+            //Massas de água
+            var massas_agua10 = L.geoJSON(valenca_massas_agua, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            massas_agua10.bindTooltip('Massas de água')
+            massas_agua10.addTo(map);
+
+            var cos_valenca = L.layerGroup ([territorios_arti10,agricultura10,pastagens10,florestas10,matos10,espacos_descobertos10,zonas_humidas10,massas_agua10])
+            .addTo(map);
+
+            //pontos de interesse
+            //serviços
+            //multibanco
+            var multibanco = L.geoJSON(pt_central_valenca_multibanco, {
+                pointToLayer: function(feature, latlng) {
+                var multibanco_icon = new L.Icon ({
+                    iconUrl:'icons/multibanco.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:multibanco_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Multibanco </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //restauracao
+            var restauracao = L.geoJSON(pt_central_valenca_restauracao, {
+                pointToLayer: function(feature, latlng) {
+                var restauracao_icon = new L.Icon ({
+                    iconUrl:'icons/restaurantes.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:restauracao_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Restauração </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //farmacias
+            var farmacias = L.geoJSON(pt_central_valenca_farmacias, {
+                pointToLayer: function(feature, latlng) {
+                var farmacias_icon = new L.Icon ({
+                    iconUrl:'icons/farmacia.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:farmacias_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Farmácias </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //forças de segurança
+            var forcas_seguranca = L.geoJSON(pt_central_valenca_forcas_seguranca, {
+                pointToLayer: function(feature, latlng) {
+                var forcas_seguranca_icon = new L.Icon ({
+                    iconUrl:'icons/policia.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:forcas_seguranca_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Forças de Segurança </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //hospitais
+            var hospitais = L.geoJSON(pt_central_valenca_hospitais, {
+                pointToLayer: function(feature, latlng) {
+                var hospitais_icon = new L.Icon ({
+                    iconUrl:'icons/hospital.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:hospitais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Hospitais/Centros de Saúde </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //cafes
+            var cafes = L.geoJSON(pt_central_valenca_cafes, {
+                pointToLayer: function(feature, latlng) {
+                var cafes_icon = new L.Icon ({
+                    iconUrl:'icons/cafe.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:cafes_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Cafés </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //estabelecimentos comerciais
+            var estabelecimentos_comerciais = L.geoJSON(pt_central_valenca_estabelecimentos_comerciais, {
+                pointToLayer: function(feature, latlng) {
+                var estabelecimentos_comerciais_icon = new L.Icon ({
+                    iconUrl:'icons/estabelecimentos_comerciais.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:estabelecimentos_comerciais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Estabelecimentos Comerciais </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //area repouso
+            var area_repouso = L.geoJSON(pt_central_valenca_area_repouso, {
+                pointToLayer: function(feature, latlng) {
+                var area_repouso_icon = new L.Icon ({
+                    iconUrl:'icons/repouso.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:area_repouso_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Área de Repouso </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //camara e junta
+            var camara_junta = L.geoJSON(pt_central_valenca_camara_junta, {
+                pointToLayer: function(feature, latlng) {
+                var camara_junta_icon = new L.Icon ({
+                    iconUrl:'icons/camara_municipal.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:camara_junta_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Edifícios Municipais </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //posto turismo
+            var posto_turismo = L.geoJSON(pt_central_valenca_posto_turismo, {
+                pointToLayer: function(feature, latlng) {
+                var posto_turismo_icon = new L.Icon ({
+                    iconUrl:'icons/informacao.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:posto_turismo_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Posto de Turismo </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //patrimonio
+            //atracoes turisticoa
+            var atracoes_turisticas = L.geoJSON(pt_central_valenca_atracoes_turisticas, {
+                pointToLayer: function(feature, latlng) {
+                var atracoes_turisticas_icon = new L.Icon ({
+                    iconUrl:'icons/pontos_turisticos.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:atracoes_turisticas_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Património - Atrações Turísticos  </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //monumentos historicos
+            var monumentos_historicos = L.geoJSON(pt_central_valenca_monumentos_historicos, {
+                pointToLayer: function(feature, latlng) {
+                var monumentos_historicos_icon = new L.Icon ({
+                    iconUrl:'icons/monumentos_historicos.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:monumentos_historicos_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Património - Monumentos Históricos </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+
+            // alojamento
+            var alojamento = L.geoJSON(estab_al_central_valenca, {
+                pointToLayer: function(feature, latlng) {
+                var alojamento_icon = new L.Icon ({
+                    iconUrl:'icons/alojamento_icon.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:alojamento_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.Denominaca;
+                    let mod = feature.properties.Modalidade;
+                    let ute = feature.properties.NrUtentes;
+                    let end = feature.properties.Endereco;
+                    let fre = feature.properties.LOCALIDADE;
+                    let psot = feature.properties.CodigoPost;
+                    let type = feature.geometry.type;
+                    let email = feature.properties.Email;
+                    let coord = feature.geometry.coordinates
+                    layer.bindPopup ('<h4> Alojamento Local </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Modalidade: </strong>' + mod + '</p><p> <strong> Capacidade: </strong>' + ute + '</p><p> <strong> Endereço: </strong>' + end + '</p><p> <strong> Freguesia: </strong>' + fre + '</p><p> <strong> Código-Postal: </strong>' + psot + '</p><p> <strong> E-mail: </strong>' + email + '</p><p> <strong> Coordenadas: </strong>' + coord + '</p>') 
+                }}).addTo(map);
+
+            // legenda 
+            var legend = L.control({ position:"bottomleft"});
+                legend.onAdd = function(map) {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML += '<i style= "background:#000"></i> <span> Concelho de valença </span> <br>';
+                div.innerHTML += '<i style= "background:#0000ff"></i> <span> Caminho Português Central </span> <br>';
+                div.innerHTML += '<i style= "background:#fdfd96"></i> <span> Área envolvente ao percurso (1km)</span> <br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/alojamento_icon.png);background-repeat: no-repeat;"></i><span> Serviços - Alojamento Local</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/multibanco.png);background-repeat: no-repeat;"></i><span> Serviços - Multibanco</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/restaurantes.png);background-repeat: no-repeat;"></i><span> Serviços - Restauração</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/farmacia.png);background-repeat: no-repeat;"></i><span>  Serviços - Farmácias </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/policia.png);background-repeat: no-repeat;"></i><span>  Serviços - Forças de Segurança </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/hospital.png);background-repeat: no-repeat;"></i><span> Serviços - Hospitais/Centros de Saúde </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/cafe.png);background-repeat: no-repeat;"></i><span> Serviços - Cafés </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/estabelecimentos_comerciais.png);background-repeat: no-repeat;"></i><span>  Serviços - Estabelecimentos Comerciais </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/area_repouso.png);background-repeat: no-repeat;"></i><span>  Serviços - Áreas de Repouso </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/camara_municipal.png);background-repeat: no-repeat;"></i><span> Serviços - Edifícios Municipais </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/informacao.png);background-repeat: no-repeat;"></i><span> Serviços - Postos de Turismo </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/praia.png);background-repeat: no-repeat;"></i><span> Serviços - Atrações Turísticas </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/monumentos_historicos.png);background-repeat: no-repeat;"></i><span> Património - Monumentos Históricos </span><br>';
+                div.innerHTML += "<h4> Ocupação do Solo (COS - 2018) </4>";
+                div.innerHTML += '<i style= "background:#000000"></i> <span> Territórios Artificializados  </span> <br>';
+                div.innerHTML += '<i style= "background:#8B4513"></i> <span> Agricultura </span> <br>';
+                div.innerHTML += '<i style= "background:#DCDCDC"></i> <span> Espaços Descobertos </span> <br>';
+                div.innerHTML += '<i style= "background:#006400"></i> <span> Florestas </span> <br>';
+                div.innerHTML += '<i style= "background:#87CEeb"></i> <span> Massas de água </span> <br>';
+                div.innerHTML += '<i style= "background:#964B00"></i> <span> Matos </span> <br>';
+
+                return div;
+                };
+                legend.addTo(map);
+
+            // adicionar as camadas ao mapa
+            var baselayers = {
+                'OpenStreetMap': osm,
+                'Stamen-Toner': toner, 
+                'OpenTopoMap': topo
+            };
+            var overlays = {
+                'Concelho de Valença': concelho10,
+                'Caminho Português Central em Valença': percurso,
+                'Área envolvente ao percurso (1km)': buffer,
+                'Serviços - Alojamento Local':alojamento,
+                'Serviços - Multibanco':multibanco,
+                'Serviços - Restauração':restauracao,
+                'Serviços - Farmácias':farmacias,
+                'Serviços - Forças de Segurança':forcas_seguranca,
+                'Serviços - Hospitais/Centros de Saúde':hospitais,
+                'Serviços - Cafés':cafes,
+                'Serviços - Estabelecimentos Comerciais':estabelecimentos_comerciais,
+                'Serviços - Área de Repouso':area_repouso,
+                'Serviços - Edifícios Municipais':camara_junta,
+                'Serviços - Posto de Turismo':posto_turismo,
+                'Património - Atrações Turísticas': atracoes_turisticas,
+                'Património - Monumentos Históricos': monumentos_historicos,
+                'COS de Valença': cos_valenca,
+            };
+            L.control.layers(baselayers,overlays).addTo(map);
+
+            L.Control.geocoder().addTo(map);
+
+            // adicionar escala 
+            var scale = L.control.scale()
+            scale.addTo(map)
+
+            // adicionar fontes 
+            map.attributionControl.addAttribution('OpenStreetMap');
+            map.attributionControl.addAttribution('Stamen-Toner');
+            map.attributionControl.addAttribution('OpenTopoMap');
+        </script>
+
+        
+
+<!--Footer-->
+<STYLE>A {text-decoration: none;} </STYLE>
+<section id="footer">
+ <div class="container footer-row">
+     <hr>
+     <div class="footer-left-col">
+     <br>
+         <div class="footer-links">
+             <div class="link-title">
+                 <a href="index.html"><h5> CAMINHOS DE SANTIAGO </h5></a><br>
+                 <a href="caminhos_santiago_europa.html"><small> Os Caminhos de Santiago na Europa </small></a><br>
+                 <a href="sinalizacao.html"><small> Simbologia e Sinalização</small></a><br>
+                 <a href="peregrinos.html"><small> Peregrinos</small></a>
+             </div>
+             <div class="link-title">
+                 <a href="caminhoportuguesdacosta.html"><h5>CAMINHO PORTUGUÊS DA COSTA </h5></a><br>
+                 <a href="caminhoportuguesdacosta.html"><small>Caminho Completo</small></a><br>
+                 <a href="caminho_costa_porto.html"><small>Porto</small></a><br>
+                 <a href="caminho_costa_matosinhos.html"><small>Matosinhos</small></a><br>
+                 <a href="caminho_costa_maia.html"><small>Maia</small></a><br>
+                 <a href="caminho_costa_vila_conde.html"><small>Vila do Conde</small></a><br>
+                 <a href="caminho_costa_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                 <a href="caminho_costa_esposende.html"><small>Esposende</small></a><br>
+                 <a href="caminho_costa_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                 <a href="caminho_costa_caminha.html"><small>Caminha</small></a><br>
+                 <a href="caminho_costa_vila_nova_cerveira.html"><small>Vila Nova de Cerveira</small></a><br>
+                 <a href="caminho_costa_valenca.html"><small>Valença</small></a>
+             </div>
+             <div class="link-title">
+                 <a href="caminhoportuguescentral.html"><h5>CAMINHO PORTUGUÊS CENTRAL</h5></a><br>
+                 <a href="caminhoportuguescentral.html"><small>Caminho Completo</small></a><br>
+                 <a href="caminho_central_porto.html"><small>Porto</small></a><br>
+                 <a href="caminho_central_matosinhos.html"><small>Matosinhos</small></a><br>
+                 <a href="caminho_central_maia.html"><small>Maia</small></a><br>
+                 <a href="caminho_central_vila_conde.html"><small>Vila do Conde</small></a><br>
+                 <a href="caminho_central_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                 <a href="caminho_central_barcelos.html"><small>Barcelos</small></a><br>
+                 <a href="caminho_central_ponte_lima.html"><small>Ponte de Lima</small></a><br>
+                 <a href="caminho_central_paredes_coura.html"><small>Paredes de Coura</small></a><br>
+                 <a href="caminho_central_valenca.html"><small>Valença</small></a> 
+             </div>
+             <div class="link-title">
+                 <a href="caminhodaorlaatlantica.html"><h5>CAMINHO DA ORLA ATLÂNTICA</h5></a></li><br>
+                 <a href="caminhodaorlaatlantica.html"><small>Caminho Completo</small></a><br>
+                 <a href="caminho_atlantica_porto.html"><small>Porto</small></a><br>
+                 <a href="caminho_atlantica_matosinhos.html"><small>Matosinhos</small></a><br>
+                 <a href="caminho_atlantica_vila_conde.html"><small>Vila do Conde</small></a><br>
+                 <a href="caminho_atlantica_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                 <a href="caminho_atlantica_esposende.html"><small>Esposende</small></a><br>
+                 <a href="caminho_atlantica_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                 <a href="caminho_atlantica_caminha.html"><small>Caminha</small></a>
+             </div>
+         </div>
+     </div>
+ </div>
+</section>
+    </body>
+</html>
+
+

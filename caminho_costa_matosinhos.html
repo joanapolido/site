@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <link rel="stylesheet" type="text/css" href="caminho_costa_matosinhos.css">
+        <title> Caminho Português da Costa - Matosinhos </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin="" ></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <script src="geojsondocs/matosinhos/Concelho_matosinhos3.geojson"></script>
+        <script src="geojsondocs/matosinhos/percurso_costa_matosinhos.geojson"></script>
+        <script src="geojsondocs/matosinhos/percurso_costa_matosinhos_buffer1km.geojson"></script>
+        <script src="geojsondocs/matosinhos/estab_al_costa_matosinhos.geojson"></script>
+        <script src="geojsondocs/sinalizacao.geojson"></script>
+        <script src="geojsondocs/territorios_arti.geojson"></script>
+        <script src="geojsondocs/agricultura.geojson"></script>
+        <script src="geojsondocs/espacos_descobertos.geojson"></script>
+        <script src="geojsondocs/florestas.geojson"></script>
+        <script src="geojsondocs/massas_agua.geojson"></script>
+        <script src="geojsondocs/matos.geojson"></script>
+
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_multibanco.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_restauracao.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_juntas.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_monumentos_historicos.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_areas_recreativas.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_estabelecimentos_comerciais.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_farmacias.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_forcas_seguranca.geojson"></script>
+        <script src="geojsondocs/matosinhos/pt_costa_matosinhos_hospitais.geojson"></script>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                        <img src="imagens/caminhosdesantiago.png">
+                </div>
+                <nav class="menu">
+                     <ul>
+                        <li><a href="index.html"> CAMINHOS DE SANTIAGO </a></li>
+                        <li><a href="caminhoportuguesdacosta.html"> CAMINHO PORTUGUÊS DA COSTA </a></li>
+                        <li><a href="caminhoportuguescentral.html"> CAMINHO PORTUGUÊS CENTRAL </a></li>
+                        <li><a href="caminhodaorlaatlantica.html"> CAMINHO DA ORLA ATLÂNTICA  </a></li>
+                     </ul>   
+                </nav>
+            </div>
+            <h2> CAMINHO PORTUGUÊS DA COSTA </h2>
+            <div class="content-row">
+                <div class="left-col">
+                <hr>
+                <h1> MATOSINHOS </h1>
+                <p> Inicialmente, o território deste município, foi criado, das passadas divisões 
+                    administrativas medievais do Julgado de Bouças e do Couto de Leça, tendo uma 
+                    correlação aos caminhos de peregrinação de Santiago (Câmara Municipal de Matosinhos, 
+                    2018). No séc. XX, o território deste concelho padeceu de profundas alterações, devido 
+                    há localização geográfica. Nos séculos XIX e XXI, o percurso no concelho passava pelo
+                    Couto de Leça da Ordem dos Cavaleiros Hospitalários, localizados no Mosteiro de Leça 
+                    do Balio, a aproximadamente, 1,5km do percurso. Tinha como função dar assistência aos 
+                    caminhantes que se dirigiam a Compostela (Caminho Português da Costa, 2018).
+                    Este tem uma distância total de 6 km, tem uma duração de, aproximadamente, 2 horas, 
+                    uma dificuldade classificada como fácil e o tipo de percurso é urbano
+                    (Caminho Português da Costa, 2018). </p>     
+        </div>  
+        <div class="right-col">
+            <img src="imagens/costa_matosinhos.png">
+        </div>
+   </div>
+   <nav class="menu3">
+    <ul>
+       <li><a href="caminhoportuguesdacosta.html"> Caminho completo </a></li>
+       <li><a href="caminho_costa_porto.html"> Porto </a></li>
+       <li><a href="caminho_costa_matosinhos.html"> Matosinhos </a></li>
+       <li><a href="caminho_costa_maia.html"> Maia </a></li>
+       <li><a href="caminho_costa_vila_conde.html"> Vila do Conde  </a></li>
+       <li><a href="caminho_costa_povoa_varzim.html"> Póvoa de Varzim  </a></li>
+       <li><a href="caminho_costa_esposende.html"> Esposende  </a></li>
+       <li><a href="caminho_costa_viana_castelo.html"> Viana do Castelo  </a></li>
+       <li><a href="caminho_costa_caminha.html"> Caminha  </a></li>
+       <li><a href="caminho_costa_vila_nova_cerveira.html"> Vila Nova de Cerveira  </a></li>
+       <li><a href="caminho_costa_valenca.html"> Valença </a></li>
+    </ul>   
+    </nav>
+        <div id='mapDIV'>i</div>
+
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>  
+
+        <script>
+            // definiçoes do mapa
+            var map = L.map(document.getElementById('mapDIV'), { 
+                center: [41.20322,-8.64594],
+                zoom: 12
+                });
+
+            // Base map
+            var osm =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+
+            var toner= L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png', {});
+
+            var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {});
+
+            // coordenadas
+            var coordDIV = document.createElement('div');
+            coordDIV.id = 'mapCoordDIV';
+            coordDIV.style.position = 'absolute';
+            coordDIV.style.bottom = '1px';
+            coordDIV.style.left = '310px';
+            coordDIV.style.zIndex = '900';
+            coordDIV.style.color = '#404040';
+            coordDIV.style.fontFamily = 'Georgia';
+            coordDIV.style.backgroundColor = '#fff';
+
+            document.getElementById('mapDIV').appendChild(coordDIV);
+
+            map.on('mousemove', function(e){
+                var lat = e.latlng.lat.toFixed(3);
+                var lon = e.latlng.lng.toFixed(3);
+                document.getElementById('mapCoordDIV').innerHTML = 'Coordenadas:' + lat + ' , ' + lon;
+                });
+
+            // criação das camadas de sobreposição
+            // poligono matosinhos 
+            var concelho1 = L.geoJSON(Concelho_matosinhos3,{
+                        color: '#000',
+                        weight: 0.5
+            });
+            concelho1.bindTooltip('Concelho de Matosinhos')
+            concelho1.addTo(map);
+
+            // buffer 1km
+            var buffer = L.geoJSON(percurso_costa_matosinhos_buffer1km, {
+                    color: '#FDFD96',
+                    weight: 3,
+                    dashArray: '12 8 12'
+            });
+            buffer.bindTooltip('Área envolvente - 1km')
+            buffer.addTo(map);
+            
+            // percurso costa matosinhos
+            var percurso = L.geoJSON(percurso_costa_matosinhos, {
+                color: '#0000ff',
+                weight: 4,
+                dashArray: '12 8 12'
+            });
+            percurso.bindTooltip('Caminho Português da Costa em Matosinhos')
+            percurso.addTo(map);
+
+            //COS 2018 - Matosinhos
+            //territorios artificializados 
+            var territorios_arti = L.geoJSON(territorios_arti, {
+                    color: '#000000',
+                    backgrounds: '#000000',
+                    weight: 0.5,
+            });
+            territorios_arti.bindTooltip('Territórios artificializados')
+            territorios_arti.addTo(map);
+
+            //agricultura 
+            var agricultura = L.geoJSON(agricultura, {
+                    color: '#8B4513',
+                    backgrounds: '#8B4513',
+                    weight: 0.5,
+            });
+            agricultura.bindTooltip('Agricultura')
+            agricultura.addTo(map);
+
+            //espaços descobertos 
+            var espacos_descobertos = L.geoJSON(espacos_descobertos, {
+                    color: '#DCDCDC',
+                    backgrounds: '#DCDCDC',
+                    weight: 0.5,
+            });
+            espacos_descobertos.bindTooltip('Espaços Descobertos')
+            espacos_descobertos.addTo(map);
+
+            //florestas
+            var florestas = L.geoJSON(florestas, {
+                    color: '#006400',
+                    backgrounds: '#006400',
+                    weight: 0.5,
+            });
+            florestas.bindTooltip('Florestas')
+            florestas.addTo(map);
+
+            //Massas de água 
+            var massas_agua = L.geoJSON(massas_agua, {
+                    color: '#87CEFA',
+                    backgrounds: '#87CEFA',
+                    weight: 0.5,
+            });
+            massas_agua.bindTooltip('Massas de água')
+            massas_agua.addTo(map);
+
+            //Matos
+            var matos = L.geoJSON(matos, {
+                    color: '#964B00',
+                    backgrounds: '#964B00',
+                    weight: 0.5,
+            });
+            matos.bindTooltip('Matos')
+            matos.addTo(map);
+
+            var cos_matosinhos = L.layerGroup ([territorios_arti,agricultura,espacos_descobertos,florestas,massas_agua,matos])
+            .addTo(map);
+            
+            //pontos de interesse
+            //serviços
+            //multibanco
+            var multibanco = L.geoJSON(pt_costa_matosinhos_multibanco, {
+                pointToLayer: function(feature, latlng) {
+                var multibanco_icon = new L.Icon ({
+                    iconUrl:'icons/multibanco.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:multibanco_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Multibanco </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //restauracao
+            var restauracao = L.geoJSON(pt_costa_matosinhos_restauracao, {
+                pointToLayer: function(feature, latlng) {
+                var restauracao_icon = new L.Icon ({
+                    iconUrl:'icons/restaurantes.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:restauracao_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Restauração </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //farmacias
+            var farmacias = L.geoJSON(pt_costa_matosinhos_farmacias, {
+                pointToLayer: function(feature, latlng) {
+                var farmacias_icon = new L.Icon ({
+                    iconUrl:'icons/farmacia.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:farmacias_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Farmácias </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //forças de segurança
+            var forcas_seguranca = L.geoJSON(pt_costa_matosinhos_forcas_seguranca, {
+                pointToLayer: function(feature, latlng) {
+                var forcas_seguranca_icon = new L.Icon ({
+                    iconUrl:'icons/policia.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:forcas_seguranca_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Forças de Segurança </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //hospitais
+            var hospitais = L.geoJSON(pt_costa_matosinhos_hospitais, {
+                pointToLayer: function(feature, latlng) {
+                var hospitais_icon = new L.Icon ({
+                    iconUrl:'icons/hospital.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:hospitais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Hospitais/Centros de Saúde </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+
+            //estabelecimentos comerciais
+             var estabelecimentos_comerciais = L.geoJSON(pt_costa_matosinhos_estabelecimentos_comerciais, {
+                pointToLayer: function(feature, latlng) {
+                var estabelecimentos_comerciais_icon = new L.Icon ({
+                    iconUrl:'icons/estabelecimentos_comerciais.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:estabelecimentos_comerciais_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Estabelecimentos Comerciais </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            //areas recreativas
+            var areas_recreativas = L.geoJSON(pt_costa_matosinhos_areas_recreativas, {
+                pointToLayer: function(feature, latlng) {
+                var areas_recreativas_icon = new L.Icon ({
+                    iconUrl:'icons/jardins.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:areas_recreativas_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Áreas Recreativas </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            // juntas
+            var juntas = L.geoJSON(pt_costa_matosinhos_juntas, {
+                pointToLayer: function(feature, latlng) {
+                var juntas_icon = new L.Icon ({
+                    iconUrl:'icons/camara_municipal.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:juntas_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Serviço - Edifícios Municipais </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+            
+            //patrimonio
+            //monumentos historicos
+            var monumentos_historicos = L.geoJSON(pt_costa_matosinhos_monumentos_historicos, {
+                pointToLayer: function(feature, latlng) {
+                var monumentos_historicos_icon = new L.Icon ({
+                    iconUrl:'icons/monumentos_historicos.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:monumentos_historicos_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.POI_NAME;
+                    let mod = feature.properties.ST_NAME;
+                    layer.bindPopup ('<h4> Património - Monumentos Históricos </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Local: </strong>' + mod + '</p>') 
+                }}).addTo(map);
+
+            // pontos de sinalização
+            var sinalizacao = L.geoJSON(sinalizacao, {
+                pointToLayer: function(feature, latlng) {
+                var sinalizacao_icon = new L.Icon ({
+                    iconUrl:'icons/sinalizacao_icon.png',
+                    iconSize:    [10, 10.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:sinalizacao_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let tipo = feature.properties.t_tulo_;
+                    let fre = feature.properties.freguesia;
+                    let type = feature.geometry.type;
+                    let coord = feature.geometry.coordinates
+                    layer.bindPopup ('<h4> Sinalização </h4> <p> <strong> Tipo de sinalização: </strong>' + tipo + '</p> <p> <strong> Freguesia: </strong>' + fre + '</p> <p> <strong> Coordenadas: </strong>' + coord + '</p>')
+                }}).addTo(map);
+
+            // alojamento matosinhos 
+            var alojamento = L.geoJSON(estab_al_costa_matosinhos, {
+                pointToLayer: function(feature, latlng) {
+                var alojamento_icon = new L.Icon ({
+                    iconUrl:'icons/alojamento_icon.png',
+                    iconSize:    [25, 20.5],
+                    iconAnchor:  [12, 12],
+                    popupAnchor: [6, -5]
+                    }
+                );
+                return L.marker(latlng, {icon:alojamento_icon});
+                },
+                onEachFeature: function(feature, layer) {
+                    let dom = feature.properties.Denominaca;
+                    let mod = feature.properties.Modalidade;
+                    let ute = feature.properties.NrUtentes;
+                    let end = feature.properties.Endereco;
+                    let fre = feature.properties.LOCALIDADE;
+                    let psot = feature.properties.CodigoPost;
+                    let type = feature.geometry.type;
+                    let email = feature.properties.Email;
+                    let coord = feature.geometry.coordinates
+                    layer.bindPopup ('<h4> Serviços - Alojamento Local </h4> <p> <strong> Nome: </strong>' + dom + '</p> <p> <strong> Modalidade: </strong>' + mod + '</p><p> <strong> Capacidade: </strong>' + ute + '</p><p> <strong> Endereço: </strong>' + end + '</p><p> <strong> Freguesia: </strong>' + fre + '</p><p> <strong> Código-Postal: </strong>' + psot + '</p><p> <strong> E-mail: </strong>' + email + '</p><p> <strong> Coordenadas: </strong>' + coord + '</p>') 
+                }}).addTo(map);
+
+            // PATRIMONIO - 7 elementos 
+                // ponte de D.Goimil
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var ponteIcon = new LeafIcon({iconUrl:'icons/ponte.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var ponte =L.marker([41.217595, -8.646277], {icon:ponteIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Ponte Medieval de Dom Goimil <br> <strong> Endereço: </strong> Rua Estação do Araújo <br> <strong> História: </strong> A ponte medieval passa sobre o rio Leça, terá sido construída por iniciativa da Ordem dos Cavaleiros Hospitalários <br> <strong> Coordenadas: </strong> -8.646277, 41.217595 <img width='300' height='350' src='fotografias/ponte.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+            
+                // igreja paroquial de santiago de custóias
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var igrejaIcon = new LeafIcon({iconUrl:'icons/igreja.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var igreja = L.marker([41.202839, -8.645156], {icon:igrejaIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Igreja Paroquial de Santiago de Custóias <br> <strong> Endereço: </strong> Rua  Igreja Velha <br> <strong> História: </strong> A igreja paroquial substitui a antiga igreja medieval que localizava no Largo do Souto. Esta atual foi construída em 1733 pelo Balio do Mosteiro de Leça e cujo orago é Santiago Maior. <br> <strong> Coordenadas: </strong> -8.645156, 41.202839 <img width='300' height='350' src='fotografias/igreja.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+            
+                // largo do Souto
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var largoIcon = new LeafIcon({iconUrl:'icons/largo_souto.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var largo = L.marker([41.202477, -8.641587], {icon:largoIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Largo do Souto <br> <strong> Endereço: </strong> Rua António Sérgio <br> <strong> História: </strong> Era aqui que se localizava a antiga Igreja Medieval de Santiago, até ao século XVIII. Atualmente, é aqui que se realizam as festas da freguesia em honra do Apóstolo Santiago, no dia 25 de julho. <br> <strong> Coordenadas: </strong> -8.6411587, 41.202477 <img width='300' height='350' src='fotografias/largo.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+            
+                // Marco do Couto 
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var marcoIcon = new LeafIcon({iconUrl:'icons/marco.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var marco = L.marker([41.226227, -8.657559], {icon:marcoIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Marco do Couto de Leça da Ordem de Malta <br> <strong> Endereço: </strong> Rua das Carvalhas <br> <strong> História: </strong> O marco datada do século XVII, marca o limite das terras do Couto de Leça, que pertenceram à Ordem dos Cavalieros Hospitalários. <br> <strong> Coordenadas: </strong> -8.657559, 41.226227 <img width='300' height='350' src='fotografias/marco.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+            
+                // cruzeiro do padrão da légua
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var cruzeiroIcon = new LeafIcon({iconUrl:'icons/cruzeiro.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var cruzeiro = L.marker([41.193410, -8.633970], {icon:cruzeiroIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Cruzeiro do Padrão da Légua <br> <strong> Endereço: </strong> Rua de Recarei <br> <strong> História: </strong> O cruzeiro representa a imagem do Cristo crucificado, do século XVII. <br> <strong> Coordenadas: </strong> -8.633870, 41.193410 <img width='300' height='350' src='fotografias/cruzeiro.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+                
+                // Casa de Santiago 
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var casaIcon = new LeafIcon({iconUrl:'icons/casa_santiago.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var casasantiago = L.marker([41.202, -8.646], {icon:casaIcon}).addTo(map).bindPopup("<h4> Património </h4><p> <strong> Nome: </strong> Casa de Santiago <br> <strong> Endereço: </strong> Rua Cândido dos Reis <br> <strong> História: </strong> A casa de Santiago é datada do século XVIII e encontra-se junto à Igreja Paroquial de Santiago de Custóias. <br> <strong> Coordenadas: </strong> -8.645865, 41.201799 <img width='300' height='350' src='fotografias/casa_santiago.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>")
+                
+                var patrimonio = L.layerGroup ([ponte,igreja,largo,marco,cruzeiro, casasantiago])
+                .addTo(map);
+
+            // Serviços -  elementos 
+                // farmácia ferreira de sousa 
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var farmaciaIcon = new LeafIcon({iconUrl:'icons/farmacia.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var sousa = L.marker([41.18000, -8.62999], {icon:farmaciaIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Farmácia Ferreira de Sousa <br> <strong> Endereço: </strong> Rua Nova do Seixo <br> <strong> Tipo de serviço: </strong> Farmácia <br> <strong> Coordenadas: </strong> -8.62999, 41.18000 </p>")
+                
+                // pingo doce são mamede de infesta
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var supermercadoIcon = new LeafIcon({iconUrl:'icons/supermercado.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var infesta = L.marker([41.18180, -8.62969], {icon:supermercadoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Pingo Doce - São Mamede de Infesta <br> <strong> Endereço: </strong> Rua Cooperação <br> <strong> Tipo de serviço: </strong> Supermercado <br> <strong> Coordenadas: </strong> -8.62969, 41.18180 </p>")
+                
+                // Lidl monte dos burgos 
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var supermercadoIcon = new LeafIcon({iconUrl:'icons/supermercado.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var lidl = L.marker([41.184721, -8.631539], {icon:supermercadoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Lidl - Monte dos Burgos <br> <strong> Endereço: </strong> Rua Eng. António da Costa Reis <br> <strong> Tipo de serviço: </strong> Supermercado <br> <strong> Coordenadas: </strong> -8.631539, 41.184721<img width='300' height='350' src='fotografias/lidl.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // Minipreço de Custóias
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var supermercadoIcon = new LeafIcon({iconUrl:'icons/supermercado.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var mini = L.marker([41.19237, -8.63331], {icon:supermercadoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Minipreço <br> <strong> Endereço: </strong> Rua Nova do Seixo <br> <strong> Tipo de serviço: </strong> Supermercado <br> <strong> Coordenadas: </strong> -8.633430, 41.192025  <img width='300' height='350' src='fotografias/mini_preco_padrao.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // Continente Bom dia
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var supermercadoIcon = new LeafIcon({iconUrl:'icons/supermercado.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var continente = L.marker([41.186, -8.631], {icon:supermercadoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Continente Bom Dia  <br> <strong> Endereço: </strong> Rua Nova do Seixo <br> <strong> Tipo de serviço: </strong> Supermercado <br> <strong> Coordenadas: </strong> -8.631719, 41.185147  <img width='300' height='350' src='fotografias/continente.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // farmacia Moderna padrão da legua
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var farmaciaIcon = new LeafIcon({iconUrl:'icons/farmacia.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var farmacia = L.marker([41.192319, -8.633834], {icon:farmaciaIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Farmácia Moderna Padrão da Légua  <br> <strong> Endereço: </strong> Rua Fonte Velha <br> <strong> Tipo de serviço: </strong> Farmácia <br> <strong> Coordenadas: </strong> -8.633834, 41.192319  <img width='300' height='350' src='fotografias/farmacia_padrao.png' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // ponto de descanso e agua - padrao
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var pontoIcon = new LeafIcon({iconUrl:'icons/ponto_agua.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var ponto = L.marker([41.192308, -8.633733], {icon:pontoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Ponto de descanso/água  <br> <strong> Endereço: </strong> Rua Fonte Velha <br> <strong> Tipo de serviço: </strong> Ponto de descanso/água <br> <strong> Coordenadas: </strong> -8.633733, 41.192308  <img width='300' height='350' src='fotografias/ponto_agua_padrao.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // ponto de descanso e agua - largo do souto
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var pontoIcon = new LeafIcon({iconUrl:'icons/ponto_agua.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var descanso = L.marker([41.203, -8.642], {icon:pontoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Ponto de descanso/água  <br> <strong> Endereço: </strong> Largo do Souto <br> <strong> Tipo de serviço: </strong> Ponto de descanso/água <br> <strong> Coordenadas: </strong> -8.64186, 41.20279  <img width='300' height='350' src='fotografias/largo.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // psp de custoias
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [45, 40.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var policiaIcon = new LeafIcon({iconUrl:'icons/policia.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var psp = L.marker([41.199516, -8.643798], {icon:policiaIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> PSP de Custóias  <br> <strong> Endereço: </strong> Rua Chavinha <br> <strong> Tipo de serviço: </strong> Polícia <br> <strong> Coordenadas: </strong> -8.643798, 41.199516  <img width='300' height='350' src='fotografias/policia.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // farmacia sousa oliveira custoias
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var farmaciaIcon = new LeafIcon({iconUrl:'icons/farmacia.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var oliveira = L.marker([41.202416, -8.642382], {icon:farmaciaIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Farmácia Sousa Oliveira  <br> <strong> Endereço: </strong> Largo do Souto <br> <strong> Tipo de serviço: </strong> Farmácia <br> <strong> Coordenadas: </strong> -8.642382, 41.202416  <img width='300' height='350' src='fotografias/farmacia_sousa.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // minipreço custoias
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var supermercadoIcon = new LeafIcon({iconUrl:'icons/supermercado.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var preco = L.marker([41.201, -8.646], {icon:supermercadoIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Minipreço Family  <br> <strong> Endereço: </strong> Rua Cândido dos Reis <br> <strong> Tipo de serviço: </strong> Supermercado <br> <strong> Coordenadas: </strong> -8.645974, 41.201860  <img width='300' height='350' src='fotografias/minipreco_family.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // bombeiros de leça do balio
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var bombeirosIcon = new LeafIcon({iconUrl:'icons/bombeiros.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var leca = L.marker([41.211600, -8.633069], {icon:bombeirosIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Bombeiros Voluntários de Leça do Balio  <br> <strong> Endereço: </strong> Rua dos Bombeiros Voluntários <br> <strong> Tipo de serviço: </strong> Bombeiros <br> <strong> Coordenadas: </strong> -8.633069, 41.211600  <img width='300' height='350' src='fotografias/bombeiros.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                // Albergue
+                var LeafIcon = L.Icon.extend ({
+                    options : {
+                        iconSize:    [35, 30.5],
+                        iconAnchor:  [12, 12],
+                        popupAnchor: [6, -5]
+                    }
+                });
+                var albergueIcon = new LeafIcon({iconUrl:'icons/albergue.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                var albergue = L.marker([41.188333, -8.649414], {icon:albergueIcon}).addTo(map).bindPopup("<h4> Serviços </h4><p> <strong> Nome: </strong> Refúgio de Peregrinos Via Portuscale  <br> <strong> Endereço: </strong> Rua de Vasco Santana <br> <strong> Tipo de serviço: </strong> Albergue <br> <strong> Coordenadas: </strong> -8.649414, 41.188333  <img width='300' height='350' src='fotografias/albergue.jpg' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen'></iframe></p>") 
+                
+                var servicos = L.layerGroup ([sousa, infesta, lidl, mini, continente, farmacia, ponto, descanso, psp, oliveira, preco, leca, albergue])
+                .addTo(map);
+
+            // legenda 
+            var legend = L.control({ position:"bottomleft"});
+                legend.onAdd = function(map) {
+                var div = L.DomUtil.create("div", "legend");
+                div.innerHTML += '<i style= "background:#000"></i> <span> Concelho de Matosinhos </span> <br>';
+                div.innerHTML += '<i style= "background:#0000ff"></i> <span> Caminho Português da Costa </span> <br>';
+                div.innerHTML += '<i style= "background:#fdfd96"></i> <span> Área envolvente ao percurso (1km) </span> <br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/sinalizacao_icon.png);background-repeat: no-repeat;"></i><span> Sinalização </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/alojamento_icon.png);background-repeat: no-repeat;"></i><span> Serviços - Alojamento Local</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/multibanco.png);background-repeat: no-repeat;"></i><span> Serviços - Multibanco</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/restaurantes.png);background-repeat: no-repeat;"></i><span> Serviços - Restauração</span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/farmacia.png);background-repeat: no-repeat;"></i><span>  Serviços - Farmácias </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/policia.png);background-repeat: no-repeat;"></i><span>  Serviços - Forças de Segurança </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/hospital.png);background-repeat: no-repeat;"></i><span> Serviços - Hospitais/Centros de Saúde </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/estabelecimentos_comerciais.png);background-repeat: no-repeat;"></i><span>  Serviços - Estabelecimentos Comerciais </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/jardins.png);background-repeat: no-repeat;"></i><span>  Serviços - Áreas Recreativas </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/camara_municipal.png);background-repeat: no-repeat;"></i><span> Serviços - Edifícios Municipais </span><br>';
+                div.innerHTML += '<i class="icon" style="background-image: url(icons/monumentos_historicos.png);background-repeat: no-repeat;"></i><span> Património - Monumentos Históricos </span><br>';
+                div.innerHTML += "<h4> Ocupação do Solo (COS - 2018) </4>";
+                div.innerHTML += '<i style= "background:#000000"></i> <span> Territórios Artificializados  </span> <br>';
+                div.innerHTML += '<i style= "background:#8B4513"></i> <span> Agricultura </span> <br>';
+                div.innerHTML += '<i style= "background:#DCDCDC"></i> <span> Espaços Descobertos </span> <br>';
+                div.innerHTML += '<i style= "background:#006400"></i> <span> Florestas </span> <br>';
+                div.innerHTML += '<i style= "background:#87CEeb"></i> <span> Massas de água </span> <br>';
+                div.innerHTML += '<i style= "background:#964B00"></i> <span> Matos </span> <br>';
+                  
+                return div;
+                };
+                legend.addTo(map);
+
+            // adicionar as camadas ao mapa
+            var baselayers = {
+                'OpenStreetMap': osm,
+                'Stamen-Toner': toner, 
+                'OpenTopoMap': topo
+            };
+            var overlays = {
+                'Concelho de Matosinhos': concelho1,
+                'Caminho Português da Costa em Matosinhos': percurso,
+                'Área envolvente ao percurso (1km)': buffer,
+                'Sinalização': sinalizacao,
+                'Património': patrimonio,
+                'Serviços': servicos,
+                'Serviços - Alojamento Local':alojamento,
+                'Serviços - Multibanco':multibanco,
+                'Serviços - Restauração':restauracao,
+                'Serviços - Farmácias':farmacias,
+                'Serviços - Forças de Segurança':forcas_seguranca,
+                'Serviços - Hospitais/Centros de Saúde':hospitais,
+                'Serviços - Estabelecimentos Comerciais':estabelecimentos_comerciais,
+                'Serviços - Áreas Recreativas':areas_recreativas,
+                'Serviços - Edifícios Municipais':juntas,
+                'Património - Monumentos Históricos': monumentos_historicos,
+                'COS de Matosinhos': cos_matosinhos,
+            };
+            L.control.layers(baselayers,overlays).addTo(map);
+
+            L.Control.geocoder().addTo(map);
+
+            // adicionar escala 
+            var scale = L.control.scale()
+            scale.addTo(map)
+
+            // adicionar fontes 
+            map.attributionControl.addAttribution('OpenStreetMap');
+            map.attributionControl.addAttribution('Stamen-Toner');
+            map.attributionControl.addAttribution('OpenTopoMap');
+        
+        </script>
+
+        <!--galeria de pontos de interesse-->
+        
+        <h3> PATRIMÓNIO </h3>
+            <br>
+            <br>
+            <div class="wrap">
+                <section class="container gallery-container">
+        
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">01 / 05</div>
+                        <img class="imgslide" src="imagens/cruzeiro_padrao_legua.jpg" />
+                        <div class="text"> Cruzeiro do Padrão da Légua </div>
+                    </div>
+        
+                    <div class="mySlides fade">
+                        <div class="numbertext">02 / 05</div>
+                        <img class="imgslide" src="imagens/casa_santiago.jpg" />
+                        <div class="text"> Casa de Santiago </div>
+                    </div>
+        
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">03 / 05</div>
+                        <img class="imgslide" src="imagens/igreja_santiago.jpg" />
+                        <div class="text"> Igreja Paroquial de Santiago de Custóias </div>
+                    </div>
+        
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">04 / 05</div>
+                        <img class="imgslide" src="imagens/largo_souto.jpg"/>
+                        <div class="text"> Largo do Souto </div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="numbertext">05 / 05</div>
+                        <img class="imgslide" src="imagens/ponte_goimil.jpg"/>
+                        <div class="text"> Ponte Medieval de Dom Goimil </div>
+                    </div>
+                    <div class="mySlides fade"> 
+                        <div class="numbertext">06 / 06</div>
+                        <img class="imgslide" src="imagens/marco_couto.jpg"/>
+                        <div class="text"> Marco do Couto de Leça da Ordem de Malta </div>
+                    </div>
+                    
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </section>
+            </div>
+        
+            <script src="comportamento.json"></script>
+
+            <!--Footer-->
+            <STYLE>A {text-decoration: none;} </STYLE>
+            <section id="footer">
+                <div class="container footer-row">
+                    <hr>
+                    <div class="footer-left-col">
+                    <br>
+                        <div class="footer-links">
+                            <div class="link-title">
+                                <a href="index.html"><h5> CAMINHOS DE SANTIAGO </h5></a><br>
+                                <a href="caminhos_santiago_europa.html"><small> Os Caminhos de Santiago na Europa </small></a><br>
+                                <a href="sinalizacao.html"><small> Simbologia e Sinalização</small></a><br>
+                                <a href="peregrinos.html"><small> Peregrinos</small></a>
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhoportuguesdacosta.html"><h5>CAMINHO PORTUGUÊS DA COSTA </h5></a><br>
+                                <a href="caminhoportuguesdacosta.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_costa_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_costa_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_costa_maia.html"><small>Maia</small></a><br>
+                                <a href="caminho_costa_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_costa_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_costa_esposende.html"><small>Esposende</small></a><br>
+                                <a href="caminho_costa_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                                <a href="caminho_costa_caminha.html"><small>Caminha</small></a><br>
+                                <a href="caminho_costa_vila_nova_cerveira.html"><small>Vila Nova de Cerveira</small></a><br>
+                                <a href="caminho_costa_valenca.html"><small>Valença</small></a>
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhoportuguescentral.html"><h5>CAMINHO PORTUGUÊS CENTRAL</h5></a><br>
+                                <a href="caminhoportuguescentral.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_central_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_central_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_central_maia.html"><small>Maia</small></a><br>
+                                <a href="caminho_central_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_central_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_central_barcelos.html"><small>Barcelos</small></a><br>
+                                <a href="caminho_central_ponte_lima.html"><small>Ponte de Lima</small></a><br>
+                                <a href="caminho_central_paredes_coura.html"><small>Paredes de Coura</small></a><br>
+                                <a href="caminho_central_valenca.html"><small>Valença</small></a> 
+                            </div>
+                            <div class="link-title">
+                                <a href="caminhodaorlaatlantica.html"><h5>CAMINHO DA ORLA ATLÂNTICA</h5></a></li><br>
+                                <a href="caminhodaorlaatlantica.html"><small>Caminho Completo</small></a><br>
+                                <a href="caminho_atlantica_porto.html"><small>Porto</small></a><br>
+                                <a href="caminho_atlantica_matosinhos.html"><small>Matosinhos</small></a><br>
+                                <a href="caminho_atlantica_vila_conde.html"><small>Vila do Conde</small></a><br>
+                                <a href="caminho_atlantica_povoa_varzim.html"><small>Póvoa do Varzim</small></a><br> 
+                                <a href="caminho_atlantica_esposende.html"><small>Esposende</small></a><br>
+                                <a href="caminho_atlantica_viana_castelo.html"><small>Viana do Castelo</small></a><br>
+                                <a href="caminho_atlantica_caminha.html"><small>Caminha</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </body>
+</html>
